@@ -38,6 +38,11 @@ mongoose.connect(process.env.DB_URI, {useNewUrlParser: true}, {useUnifiedTopolog
   .catch((err) => console.error(err));
 
 app.use(cors);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+  });
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
